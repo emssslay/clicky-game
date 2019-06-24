@@ -1,25 +1,25 @@
-import React, { useState } from "react";
-import Card from "./components/card";
+import React, { useState, useEffect } from "react";
+import Board from "./components/board";
+
+import initializeDeck from './deck';
 
 function App() {
-  const [flipped, setFlipped] = useState([]);
-  const handleClick = (id) => setFlipped([flipped, id]);
+  const [cards, setCards] = useState([]);
+  const [flipped,setFlipped] = useState([]);
+
+  useEffect(() => {
+    setCards(initializeDeck())
+  }, []);
+
+  const handleClick = (id) => setFlipped([ ... flipped, id ])
 
   return (
     <div>
       <h2>Can you remember where the cards are?
       </h2>
-      <Card 
-      id={1}
-      width={100}
-      height={100}
-      back={'../public/images/Screen Shot 2019-06-23 at 4.03.11 PM.png'}
-      front={'../public/images/Screen Shot 2019-06-23 at 4.03.16 PM.png'}
-      flipped={flipped.includes(1)}
-      handleClick={() => handleClick(1)}
-      />
+      <Board cards={cards} flipped={flipped} handleClick={handleClick} />
     </div>
   )
-}
+};
 
 export default App;
