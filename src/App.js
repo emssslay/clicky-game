@@ -7,6 +7,8 @@ function App() {
   const [cards, setCards] = useState([]);
   const [flipped,setFlipped] = useState([]);
   const [dimension, setDimension] = useState(400);
+  const [solved, setSolved] = useState([]);
+  const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
     resizeBoard();
